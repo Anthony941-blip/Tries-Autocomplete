@@ -8,7 +8,6 @@ struct TrieNode {
     TrieNode* children[26];
 };
 
-// ---- Utility: create a new TrieNode ----
 TrieNode* createNode() {
     TrieNode* node = new TrieNode();
     node->isEndOfWord = false;
@@ -17,7 +16,7 @@ TrieNode* createNode() {
     return node;
 }
 
-// ---- Insert a word ----
+
 void insert(TrieNode* root, const string& word) {
     TrieNode* curr = root;
 
@@ -33,7 +32,7 @@ void insert(TrieNode* root, const string& word) {
     curr->isEndOfWord = true;
 }
 
-// ---- Search for prefix ----
+
 TrieNode* searchPrefix(TrieNode* root, const string& prefix) {
     TrieNode* curr = root;
 
@@ -49,7 +48,6 @@ TrieNode* searchPrefix(TrieNode* root, const string& prefix) {
     return curr;
 }
 
-// ---- DFS to collect words ----
 void collectWords(TrieNode* node, string prefix, vector<string>& out) {
     if (!node) return;
 
@@ -64,7 +62,7 @@ void collectWords(TrieNode* node, string prefix, vector<string>& out) {
     }
 }
 
-// ---- Autocomplete function ----
+
 vector<string> autocomplete(TrieNode* root, const string& prefix) {
     TrieNode* node = searchPrefix(root, prefix);
     vector<string> results;
@@ -76,13 +74,10 @@ vector<string> autocomplete(TrieNode* root, const string& prefix) {
     return results;
 }
 
-// =============================
-//            MAIN
-// =============================
+
 int main() {
     TrieNode* root = createNode();
 
-    // Insert dictionary words
     insert(root, "apple");
     insert(root, "application");
     insert(root, "apply");
